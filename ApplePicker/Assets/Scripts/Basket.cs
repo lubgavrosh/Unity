@@ -10,7 +10,7 @@ public class Basket : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameObject scoreGO = GameObject.Find("ScoreCounter"); 
+        GameObject scoreGO = GameObject.FindGameObjectWithTag("ScoreCounter"); 
                                                               
         scoreGT = scoreGO.GetComponent<Text>(); 
                                                
@@ -34,16 +34,23 @@ public class Basket : MonoBehaviour
         this.transform.position = pos;
     }
     void OnCollisionEnter(Collision coll)
-    { 
-      // Отыскать яблоко, попавшее в эту корзину
+    {
+        // Отыскать яблоко, попавшее в эту корзину
         GameObject collidedWith = coll.gameObject;
-        if (collidedWith.tag == "Apple") {
-        Destroy(collidedWith); }
+        if (collidedWith.CompareTag("Apple"))
+        {
+            Destroy(collidedWith);
+        }
         // Преобразовать текст в scoreGT в целое число
-        int score = int.Parse(scoreGT.text); 
-                                             // Добавить очки за пойманное яблоко
+        int score = int.Parse(scoreGT.text);
+        // Добавить очки за пойманное яблоко
         score += 100;
         // Преобразовать число очков обратно в строку и вывести ее на экран
         scoreGT.text = score.ToString();
+        if (score > HighScore.score)
+        {
+            HighScore.score = score;
+        }
+    
     }
 }
