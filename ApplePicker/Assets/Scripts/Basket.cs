@@ -10,7 +10,7 @@ public class Basket : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameObject scoreGO = GameObject.FindGameObjectWithTag("ScoreCounter"); 
+        GameObject scoreGO = GameObject.Find("ScoreCounter"); 
                                                               
         scoreGT = scoreGO.GetComponent<Text>(); 
                                                
